@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tek_cats/app/pages/home/home_page.dart';
+
+import 'constants.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,20 +13,4 @@ class App extends StatelessWidget {
       theme: ThemeData(useMaterial3: true, primaryColor: Colors.indigo),
     );
   }
-}
-
-Map<String, WidgetBuilder> routes = {
-  Kpages.home.route: (_) => const HomePage(),
-};
-
-abstract class EnumRouteAdapter {
-  String get route;
-}
-
-enum Kpages implements EnumRouteAdapter {
-  home;
-
-  const Kpages();
-  @override
-  String get route => '/$name';
 }

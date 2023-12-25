@@ -1,40 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CatsRepository {
-  static final Dio _client = Dio();
-
-  static Future<List<String>?> getUrlsWithLimit(int limit) async {
-    try {
-      final String catUrlWithLimit =
-          'https://api.thecatapi.com/v1/images/search?limit=$limit ';
-      final response = await _client.get(catUrlWithLimit,
-          options: Options(headers: {
-            'x-api-key':
-                'live_Wd1wgQBJOZoFsN38n37Oy1WVrB8ecaB7q6M0kkBWjRZq5i5bcLlAx7r4SoAp6JNx'
-          }));
-      if (response.statusCode == 200) {
-        return (response.data as List).map<String>((e) => e['url']).toList();
-      }
-
-      throw Exception('Invalid Data ${response.statusMessage}');
-    } catch (e) {
-      debugPrint('[getUrlsWithLimit]>> erro in $e');
-      rethrow;
-    }
-  }
-}
-
-final catUrlListProvider =
-    FutureProvider.family.autoDispose<List<String>?, int>((
-  ref,
-  limit,
-) async {
-  return await CatsRepository.getUrlsWithLimit(limit);
-});
+import 'components/loading_widget.dart';
+import 'pods/home_pods.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -90,26 +60,7 @@ class HomePage extends ConsumerWidget {
                 );
               },
               error: (error, _) => Text(error.toString()),
-              loading: () => const Center(child: CircularProgressIndicator())),
-        ));
-  }
-}
-
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(),
-            Text('Obtendo novos gatinhos...')
-          ],
+              loading: () => const LoadingWidget()),
         ));
   }
 }
