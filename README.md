@@ -1,9 +1,9 @@
-#Projeto Flutter: "Tek Cats Web App"
+# Projeto Flutter: Tek Cats Web App
 
 Descrição:
-O projeto "Tek Cats Web App" é uma aplicação Flutter que permite aos amantes de gatos explorar uma coleção de imagens. Esta aplicação consome uma API de gatos e exibe os dados em uma interface de usuário amigável para a web.
+O projeto Tek Cats Web App é uma aplicação Flutter que permite aos amantes de gatos explorar uma coleção de imagens. Esta aplicação consome uma API de gatos e exibe os dados em uma interface de usuário amigável para a web.
 
-#Veja a montagem do projeto no youtube: https://www.youtube.com/watch?v=84fyBm58WsM
+## Veja o video: https://www.youtube.com/watch?v=84fyBm58WsM
 
 Recursos Principais:
 
